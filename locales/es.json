@@ -1,0 +1,10 @@
+{
+    "Position": "Nombre del cargo",
+    "Company": "Empresa",
+    "Salary": "Salario",
+    "City": "Ciudad",
+    "PublicationDate": "Fecha de publicación",
+    "Visits": "No. Visitas",
+    "Millions": "millones",
+    "Million": "millón"
+}

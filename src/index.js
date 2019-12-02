@@ -1,12 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import {IntlProvider} from "react-intl";
+import localeEsMessages from "./locales/es.json";
+import localeEnMessages from "./locales/en.json";
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from './App.js';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+let choose = () => {
+    if(navigator.language === "es")
+        return localeEsMessages;
+    else
+        return localeEnMessages;
+}
+
+ReactDOM.render(
+    <IntlProvider locale={navigator.language} key={navigator.language} messages={choose()}>
+        <App locale={navigator.language}/>
+    </IntlProvider>
+    , document.getElementById("root")
+);
+
+serviceWorker.register();
