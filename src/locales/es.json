@@ -1,4 +1,14 @@
 {
-    "Title": "Funciona",
-    "Graph-title": "Gráfica"
+    "Title": "Películas",
+    "Graph-title": "Vistas por película",
+
+    "Name": "Nombre",
+    "DirectedBy": "Dirigido por",
+    "Country": "País",
+    "Budget": "Presupuesto",
+    "Release": "Estreno",
+    "Views": "Vistas",
+
+    "Million": "millón",
+    "Millions": "millones"
 }

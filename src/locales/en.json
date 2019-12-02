@@ -1,4 +1,14 @@
 {
-    "Title": "Works",
-    "Graph-title": "Graph"
+    "Title": "Movies",
+    "Graph-title": "Views per movie",
+
+    "Name": "Name",
+    "DirectedBy": "Directed by",
+    "Country": "Country",
+    "Budget": "Budget",
+    "Release": "Release",
+    "Views": "Views",
+
+    "Million": "million",
+    "Millions": "millions"
 }
