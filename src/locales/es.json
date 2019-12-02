@@ -10,5 +10,8 @@
     "Views": "Vistas",
 
     "Million": "millón",
-    "Millions": "millones"
+    "Millions": "millones",
+
+    "LoadingDetail": "Haga clic sobre algun nombre de película en la tabla",
+    "Cast": "Reparto"
 }

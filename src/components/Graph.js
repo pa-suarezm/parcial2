@@ -9,7 +9,8 @@ class Graph extends React.Component {
     }
 
     componentWillReceiveProps(newProps){
-        this.drawChart(newProps.movies);
+        if(this.props.movies.length !== newProps.movies.length)
+            this.drawChart(newProps.movies);
     }
 
     drawChart(movies) {

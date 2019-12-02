@@ -10,5 +10,8 @@
     "Views": "Views",
 
     "Million": "million",
-    "Millions": "millions"
+    "Millions": "millions",
+
+    "LoadingDetail": "Click on a movie's name from the table",
+    "Cast": "Cast"
 }

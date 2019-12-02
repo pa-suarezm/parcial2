@@ -1,5 +1,7 @@
 import React from "react";
 
+import * as d3 from "d3";
+
 import {FormattedMessage} from "react-intl";
 import {FormattedPlural} from "react-intl";
 import {FormattedNumber} from "react-intl";
@@ -13,7 +15,8 @@ class MoviesList extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            movies: []
+            movies: [],
+            detail: 0
         };
     }
     
@@ -33,6 +36,17 @@ class MoviesList extends React.Component {
             return "Millions";
     }
 
+    handleClick = (id) => {
+        this.setState({detail: id-1});
+    }
+
+    renderMovie = () => {
+        let id = this.state.detail;
+        return(
+            <Movie movie={this.state.movies[id]}/>
+        );
+    }
+
     renderMovies() {
         if(this.state.movies.length === 0)
             return(<tbody><tr><td>Loading...</td></tr></tbody>);
@@ -44,7 +58,7 @@ class MoviesList extends React.Component {
                         return(
                         <tr key={i}>
                             <td>{e.id}</td>
-                            <td>{e.name}</td>
+                            <td><button className="btn btn-outline-dark"onClick={() => this.handleClick(e.id)}>{e.name}</button></td>
                             <td>{e.directedBy}</td>
                             <td>{e.country}</td>
                             <td>{e.budget} <FormattedMessage id={this.choosePlural(e.budget)}><FormattedPlural value={e.budget} one="million" other="millions"/></FormattedMessage></td>
@@ -86,30 +100,39 @@ class MoviesList extends React.Component {
 
     render(){
         return(
-            <div className="container-fluid">
-                <div className="row">
-                    <h1><FormattedMessage id="Title" /></h1>
+            <div id="renderedSpace" className="container-fluid">
+                <div className="row"><br /></div>
+                <div className="row text-center">
+                    <h1 className="text-center"><FormattedMessage id="Title" /></h1>
                 </div>
+                <div className="row"><br /></div>
                 <div className="row">
-                    <div id="moviesList">
-                        <table className="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th><FormattedMessage id="Name"/></th>
-                                    <th><FormattedMessage id="DirectedBy"/></th>
-                                    <th><FormattedMessage id="Country"/></th>
-                                    <th><FormattedMessage id="Budget" /></th>
-                                    <th><FormattedMessage id="Release" /></th>
-                                    <th><FormattedMessage id="Views" /></th>
-                                </tr>
-                            </thead>
-                            {this.renderMovies()}
-                        </table>
+                    <div id="moviesList" className="col-8">
+                        <div className="row">
+                            <table className="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th><FormattedMessage id="Name"/></th>
+                                        <th><FormattedMessage id="DirectedBy"/></th>
+                                        <th><FormattedMessage id="Country"/></th>
+                                        <th><FormattedMessage id="Budget" /></th>
+                                        <th><FormattedMessage id="Release" /></th>
+                                        <th><FormattedMessage id="Views" /></th>
+                                    </tr>
+                                </thead>
+                                {this.renderMovies()}
+                            </table>
+                        </div>
+                        <div className="row">
+                            <Graph locale={this.props.locale} movies={this.state.movies} />
+                        </div>
                     </div>
-                </div>
-                <div className="row">
-                    <Graph locale={this.props.locale} movies={this.state.movies} />
+                    <div ref="movieDetail" className="col-4">
+                        {
+                            this.renderMovie()
+                        }
+                    </div>
                 </div>
             </div>
         );
